@@ -1,0 +1,68 @@
+﻿@model List<SevvalImre_Proje.Models.Sikayet>
+
+@{
+    ViewBag.Title = "SikayetListele";
+}
+
+<h2>Şikayet Listesi</h2>
+<h2>@ViewBag.d</h2>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Şikayet Tarihi</th>
+                    <th>Müşteri Adı</th>
+                    <th>Müşteri Soyadı</th>
+                    <th>Restoran Adı</th>
+                    <th>Şikayet Nedeni</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.SikayetTarihi</td>
+                        <td>@item.MusteriAd</td>
+                        <td>@item.MusteriSoyad</td>
+                        <td>@item.Restoran.RestoranAd</td>
+                        <td>@item.SikayetNedeni</td>
+                        <td><a href="#" class="btn btn-info sikayetSil" data-sikayetID="@item.SikayetID"> Sil </a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".sikayetSil").click(function () {
+
+            var sonuc = confirm("Kayıt silinsin mi?");
+
+            if (sonuc) {
+                var sikayetID = $(this).attr("data-sikayetID");
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Sikayetler/SikayetSil/" + sikayetID,
+                        success: function () {
+
+                            alert("Kayıt silinmiştir.");
+                            window.location.replace("/Sikayetler/SikayetListele");
+                        },
+                        error: function () {
+                            alert("Silme Sırasında Hata Oluştu!");
+                        }
+                    });
+            }
+            else {
+
+                alert("Silme İşlemi İptal Edildi");
+            }
+        });
+    </script>
+}

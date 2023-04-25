@@ -1,0 +1,147 @@
+﻿@using SevvalImre_Proje.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V5</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/content/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/content/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/content/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/content/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/content/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/content/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/content/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/content/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/content/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/content/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url(''); background-image: url('../../bg-01.jpg'); ">
+            <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+
+                <form role="form" class="form-sample" method="post" action="/Login/Register">
+
+                    <span class="login100-form-title p-b-53">
+                        Kayıt Olun
+                    </span>
+
+                    <div class="p-t-31 p-b-9">
+                        <span class="txt1">
+                            Ad
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                        <input class="input100" type="text" name="Ad">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="p-t-31 p-b-9">
+                        <span class="txt1">
+                            Soyad
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                        <input class="input100" type="text" name="Soyad">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="p-t-31 p-b-9">
+                        <span class="txt1">
+                            Eposta
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                        <input class="input100" type="text" name="Eposta">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="p-t-31 p-b-9">
+                        <span class="txt1">
+                            Telefon Numarası
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                        <input class="input100" type="text" name="TelefonNo">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="p-t-13 p-b-9">
+                        <span class="txt1">
+                            Şifre
+                        </span>
+
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="Sifre">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    @*<div>
+                        <label for="myCheck">Müşteri:</label>
+                        <input type="checkbox" id="myCheck" onclick="myFunction()" name="RolID">
+                    </div>*@
+
+                    @*<div>
+                            <label for="myCheck">Admin:</label>
+                            <input type="checkbox" id="myCheck" onclick="myFunction()">
+                        </div>*@
+
+                    <div class="container-login100-form-btn m-t-17">
+                        <button id="btn" type="submit" class="login100-form-btn">
+                            Kayıt
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/content/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/content/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/content/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/content/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/content/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/content/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/content/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/content/js/main.js"></script>
+
+    @*<script>
+        $('#myCheck').attr('checked', true);
+        if ($('#myCheck').is(':checked'){
+            
+        }
+    </script>*@
+
+</body>
+</html>

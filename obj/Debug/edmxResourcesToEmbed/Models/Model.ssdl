@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestoranRezervasyonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ilceler">
+    <Key>
+      <PropertyRef Name="IlceID" />
+    </Key>
+    <Property Name="IlceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IlceAd" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IlID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Iller">
+    <Key>
+      <PropertyRef Name="IlID" />
+    </Key>
+    <Property Name="IlID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IlAd" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IlPlaka" Type="int" />
+  </EntityType>
+  <EntityType Name="Kampanya">
+    <Key>
+      <PropertyRef Name="KampanyaID" />
+    </Key>
+    <Property Name="KampanyaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KampanyaAd" Type="varchar" MaxLength="100" />
+    <Property Name="KampanyaTarihleri" Type="date" Nullable="false" />
+    <Property Name="RestoranID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriAd" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="KullaniciID" />
+    </Key>
+    <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Soyad" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TelefonNo" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="Eposta" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Sifre" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KullaniciRol">
+    <Key>
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="RolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RolAdi" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Masa">
+    <Key>
+      <PropertyRef Name="MasaID" />
+    </Key>
+    <Property Name="MasaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MasaNo" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Konum" Type="varchar" MaxLength="100" />
+    <Property Name="SandelyeSayisi" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="RestoranID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Restoran">
+    <Key>
+      <PropertyRef Name="RestoranID" />
+    </Key>
+    <Property Name="RestoranID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RestoranAd" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="TelefonNo" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="Adres" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="Resim" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Rezervasyonlar">
+    <Key>
+      <PropertyRef Name="RezervasyonID" />
+    </Key>
+    <Property Name="RezervasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RezervasyonTarihi" Type="date" Nullable="false" />
+    <Property Name="MasaID" Type="int" Nullable="false" />
+    <Property Name="RestoranID" Type="int" Nullable="false" />
+    <Property Name="MusteriAd" Type="varchar" MaxLength="100" />
+    <Property Name="MusteriSoyad" Type="varchar" MaxLength="100" />
+    <Property Name="KullaniciID" Type="int" />
+  </EntityType>
+  <EntityType Name="Roller">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciID" Type="int" Nullable="false" />
+    <Property Name="RolID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sikayet">
+    <Key>
+      <PropertyRef Name="SikayetID" />
+    </Key>
+    <Property Name="SikayetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SikayetTarihi" Type="date" Nullable="false" />
+    <Property Name="SikayetNedeni" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="KullaniciID" Type="int" Nullable="false" />
+    <Property Name="MusteriAd" Type="varchar" MaxLength="100" />
+    <Property Name="MusteriSoyad" Type="varchar" MaxLength="100" />
+    <Property Name="RestoranID" Type="int" />
+  </EntityType>
+  <EntityType Name="Sube">
+    <Key>
+      <PropertyRef Name="SubeID" />
+    </Key>
+    <Property Name="SubeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RestoranID" Type="int" Nullable="false" />
+    <Property Name="IlID" Type="int" Nullable="false" />
+    <Property Name="IlceID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RestoranRezervasyon.dbo.Illerin ilceleri' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Illerin ilceleri">
+    <Key>
+      <PropertyRef Name="IlAd" />
+      <PropertyRef Name="IlceAd" />
+    </Key>
+    <Property Name="IlAd" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IlceAd" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RestoranRezervasyon.dbo.Kampanyali_Restoranlar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Kampanyali_Restoranlar">
+    <Key>
+      <PropertyRef Name="RestoranAd" />
+      <PropertyRef Name="KampanyaTarihleri" />
+    </Key>
+    <Property Name="RestoranAd" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="KampanyaAd" Type="varchar" MaxLength="100" />
+    <Property Name="KampanyaTarihleri" Type="date" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RestoranRezervasyon.dbo.Kategorilerine_Gore_Restoran_Listesi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Kategorilerine_Gore_Restoran_Listesi">
+    <Key>
+      <PropertyRef Name="RestoranAd" />
+      <PropertyRef Name="KategoriAd" />
+    </Key>
+    <Property Name="RestoranAd" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="KategoriAd" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RestoranRezervasyon.dbo.Kulllanici_Listele' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Kulllanici_Listele">
+    <Key>
+      <PropertyRef Name="Ad" />
+      <PropertyRef Name="Soyad" />
+      <PropertyRef Name="TelefonNo" />
+      <PropertyRef Name="Eposta" />
+      <PropertyRef Name="Sifre" />
+      <PropertyRef Name="KullaniciID" />
+      <PropertyRef Name="RestoranID" />
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="Ad" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Soyad" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TelefonNo" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="Eposta" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Sifre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="KullaniciID" Type="int" Nullable="false" />
+    <Property Name="RestoranID" Type="int" Nullable="false" />
+    <Property Name="RolID" Type="int" Nullable="false" />
+    <Property Name="RolAdi" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RestoranRezervasyon.dbo.Sehirlere Gore Restoranlar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Sehirlere Gore Restoranlar">
+    <Key>
+      <PropertyRef Name="RestoranAd" />
+      <PropertyRef Name="IlAd" />
+      <PropertyRef Name="IlceAd" />
+    </Key>
+    <Property Name="RestoranAd" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="IlAd" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IlceAd" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_IlceSubeID">
+    <End Role="Ilceler" Type="Self.Ilceler" Multiplicity="1" />
+    <End Role="Sube" Type="Self.Sube" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ilceler">
+        <PropertyRef Name="IlceID" />
+      </Principal>
+      <Dependent Role="Sube">
+        <PropertyRef Name="IlceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IlID">
+    <End Role="Iller" Type="Self.Iller" Multiplicity="1" />
+    <End Role="Ilceler" Type="Self.Ilceler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Iller">
+        <PropertyRef Name="IlID" />
+      </Principal>
+      <Dependent Role="Ilceler">
+        <PropertyRef Name="IlID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IlSubeID">
+    <End Role="Iller" Type="Self.Iller" Multiplicity="1" />
+    <End Role="Sube" Type="Self.Sube" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Iller">
+        <PropertyRef Name="IlID" />
+      </Principal>
+      <Dependent Role="Sube">
+        <PropertyRef Name="IlID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KategoriID">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="Restoran" Type="Self.Restoran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="Restoran">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciSikayet">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="Sikayet" Type="Self.Sikayet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="Sikayet">
+        <PropertyRef Name="KullaniciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RestoranID">
+    <End Role="Restoran" Type="Self.Restoran" Multiplicity="1" />
+    <End Role="Kampanya" Type="Self.Kampanya" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Kampanya">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RestoranMasaID">
+    <End Role="Restoran" Type="Self.Restoran" Multiplicity="1" />
+    <End Role="Masa" Type="Self.Masa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Masa">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RestoranSubeID">
+    <End Role="Restoran" Type="Self.Restoran" Multiplicity="1" />
+    <End Role="Sube" Type="Self.Sube" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Sube">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervasyonlar_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Rezervasyonlar" Type="Self.Rezervasyonlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="Rezervasyonlar">
+        <PropertyRef Name="KullaniciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RezerveMasa">
+    <End Role="Masa" Type="Self.Masa" Multiplicity="1" />
+    <End Role="Rezervasyonlar" Type="Self.Rezervasyonlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Masa">
+        <PropertyRef Name="MasaID" />
+      </Principal>
+      <Dependent Role="Rezervasyonlar">
+        <PropertyRef Name="MasaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RezerveRestoran">
+    <End Role="Restoran" Type="Self.Restoran" Multiplicity="1" />
+    <End Role="Rezervasyonlar" Type="Self.Rezervasyonlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Rezervasyonlar">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roller_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="Roller" Type="Self.Roller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="Roller">
+        <PropertyRef Name="KullaniciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roller_KullaniciRol">
+    <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="1" />
+    <End Role="Roller" Type="Self.Roller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KullaniciRol">
+        <PropertyRef Name="RolID" />
+      </Principal>
+      <Dependent Role="Roller">
+        <PropertyRef Name="RolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sikayet_Restoran">
+    <End Role="Restoran" Type="Self.Restoran" Multiplicity="0..1" />
+    <End Role="Sikayet" Type="Self.Sikayet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Sikayet">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Kulllanici_Rolleri" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="RestoranRezervasyonModelStoreContainer">
+    <EntitySet Name="Ilceler" EntityType="Self.Ilceler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Iller" EntityType="Self.Iller" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kampanya" EntityType="Self.Kampanya" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KullaniciRol" EntityType="Self.KullaniciRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Masa" EntityType="Self.Masa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Restoran" EntityType="Self.Restoran" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rezervasyonlar" EntityType="Self.Rezervasyonlar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roller" EntityType="Self.Roller" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sikayet" EntityType="Self.Sikayet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sube" EntityType="Self.Sube" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Illerin ilceleri" EntityType="Self.Illerin ilceleri" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Illerin ilceleri].[IlAd] AS [IlAd], 
+    [Illerin ilceleri].[IlceAd] AS [IlceAd]
+    FROM [dbo].[Illerin ilceleri] AS [Illerin ilceleri]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Kampanyali_Restoranlar" EntityType="Self.Kampanyali_Restoranlar" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Kampanyali_Restoranlar].[RestoranAd] AS [RestoranAd], 
+    [Kampanyali_Restoranlar].[KampanyaAd] AS [KampanyaAd], 
+    [Kampanyali_Restoranlar].[KampanyaTarihleri] AS [KampanyaTarihleri]
+    FROM [dbo].[Kampanyali_Restoranlar] AS [Kampanyali_Restoranlar]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Kategorilerine_Gore_Restoran_Listesi" EntityType="Self.Kategorilerine_Gore_Restoran_Listesi" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Kategorilerine_Gore_Restoran_Listesi].[RestoranAd] AS [RestoranAd], 
+    [Kategorilerine_Gore_Restoran_Listesi].[KategoriAd] AS [KategoriAd]
+    FROM [dbo].[Kategorilerine_Gore_Restoran_Listesi] AS [Kategorilerine_Gore_Restoran_Listesi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Kulllanici_Listele" EntityType="Self.Kulllanici_Listele" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Kulllanici_Listele].[Ad] AS [Ad], 
+    [Kulllanici_Listele].[Soyad] AS [Soyad], 
+    [Kulllanici_Listele].[TelefonNo] AS [TelefonNo], 
+    [Kulllanici_Listele].[Eposta] AS [Eposta], 
+    [Kulllanici_Listele].[Sifre] AS [Sifre], 
+    [Kulllanici_Listele].[KullaniciID] AS [KullaniciID], 
+    [Kulllanici_Listele].[RestoranID] AS [RestoranID], 
+    [Kulllanici_Listele].[RolID] AS [RolID], 
+    [Kulllanici_Listele].[RolAdi] AS [RolAdi]
+    FROM [dbo].[Kulllanici_Listele] AS [Kulllanici_Listele]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Sehirlere Gore Restoranlar" EntityType="Self.Sehirlere Gore Restoranlar" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Sehirlere Gore Restoranlar].[RestoranAd] AS [RestoranAd], 
+    [Sehirlere Gore Restoranlar].[IlAd] AS [IlAd], 
+    [Sehirlere Gore Restoranlar].[IlceAd] AS [IlceAd]
+    FROM [dbo].[Sehirlere Gore Restoranlar] AS [Sehirlere Gore Restoranlar]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_IlceSubeID" Association="Self.FK_IlceSubeID">
+      <End Role="Ilceler" EntitySet="Ilceler" />
+      <End Role="Sube" EntitySet="Sube" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IlID" Association="Self.FK_IlID">
+      <End Role="Iller" EntitySet="Iller" />
+      <End Role="Ilceler" EntitySet="Ilceler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IlSubeID" Association="Self.FK_IlSubeID">
+      <End Role="Iller" EntitySet="Iller" />
+      <End Role="Sube" EntitySet="Sube" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KategoriID" Association="Self.FK_KategoriID">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Restoran" EntitySet="Restoran" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciSikayet" Association="Self.FK_KullaniciSikayet">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Sikayet" EntitySet="Sikayet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RestoranID" Association="Self.FK_RestoranID">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Kampanya" EntitySet="Kampanya" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RestoranMasaID" Association="Self.FK_RestoranMasaID">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Masa" EntitySet="Masa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RestoranSubeID" Association="Self.FK_RestoranSubeID">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Sube" EntitySet="Sube" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervasyonlar_Kullanici" Association="Self.FK_Rezervasyonlar_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Rezervasyonlar" EntitySet="Rezervasyonlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RezerveMasa" Association="Self.FK_RezerveMasa">
+      <End Role="Masa" EntitySet="Masa" />
+      <End Role="Rezervasyonlar" EntitySet="Rezervasyonlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RezerveRestoran" Association="Self.FK_RezerveRestoran">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Rezervasyonlar" EntitySet="Rezervasyonlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roller_Kullanici" Association="Self.FK_Roller_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Roller" EntitySet="Roller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roller_KullaniciRol" Association="Self.FK_Roller_KullaniciRol">
+      <End Role="KullaniciRol" EntitySet="KullaniciRol" />
+      <End Role="Roller" EntitySet="Roller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sikayet_Restoran" Association="Self.FK_Sikayet_Restoran">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Sikayet" EntitySet="Sikayet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

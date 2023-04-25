@@ -1,0 +1,124 @@
+﻿@using SevvalImre_Proje.Models;
+@model Restoran
+@{
+    ViewBag.Title = "RestoranEkle";
+}
+
+<h2>Restoran Ekle</h2>
+
+<div class="page-header">
+    <h3 class="page-title">Restoran Ekleme Sayfası</h3>
+</div>
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Restoran Bilgieri</h4>
+            <form class="forms-sample" action="/Restoran/RestoranEkle" method="post" role="form">
+                @if (Model != null)
+                {
+                    <input type="hidden" name="RestoranID" value="@Model.RestoranID" />
+                }
+                <div class="form-group">
+                    <label for="exampleInputRestoranAd1">Restoran Adı</label>
+                    @if (Model.RestoranAd == null)
+                    {
+                        <input value="" type="text" class="form-control" id="exampleInputRestoran1" placeholder="Restoran Adı" name="RestoranAd" />
+                    }
+                    else
+                    {
+                        <input value="@Model.RestoranAd" type="text" class="form-control" id="exampleInputRestoran1" placeholder="Restoran Adı" name="RestoranAd" />
+                    }
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputTelefonNo1">Telefon Numarası</label>
+                    @if (Model.TelefonNo == null)
+                    {
+                        <input value="" type="text" class="form-control" id="exampleInputTelefon1" placeholder="Telefon" name="TelefonNo" />
+                    }
+                    else
+                    {
+                        <input value="@Model.TelefonNo" type="text" class="form-control" id="exampleInputTelefon1" placeholder="Telefon" name="TelefonNo" />
+                    }
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputAdres1">Adresi</label>
+                    @if (Model.Adres == null)
+                    {
+                        <input value="" type="text" class="form-control" id="exampleInputAdres1" placeholder="Adres" name="Adres" />
+                    }
+                    else
+                    {
+                        <input value="@Model.Adres" type="text" class="form-control" id="exampleInputAdres1" placeholder="Adres" name="Adres" />
+                    }
+
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputKategori1">Kategori</label>
+                    @{
+                        var liste = ViewBag.kategori as List<Kategori>;
+                        <select class="form-control" name="KategoriID">
+                            @if (liste != null)
+                            {
+                                foreach (Kategori item in liste)
+                                {
+                                    <option value="@item.KategoriID">@item.KategoriAd</option>
+                                }
+                            }
+                        </select>
+                    }
+
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputIller">Il</label>
+                    @{
+                        var list = ViewBag.sehir as List<Iller>;
+                        <select class="form-control" name="RestoranID">
+                            @if (list != null)
+                            {
+                                foreach (Iller item in list)
+                                {
+                                    <option value="@item.IlID">@item.IlAd</option>
+                                }
+                            }
+                        </select>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputIlceler">Ilce</label>
+                    @{
+                        var listt = ViewBag.Ilce as List<Ilceler>;
+                        <select class="form-control" name="RestoranID">
+                            @if (listt != null)
+                            {
+                                foreach (Ilceler item in listt)
+                                {
+                                    <option value="@item.IlceID">@item.IlceAd</option>
+                                }
+                            }
+                        </select>
+                    }
+                </div>
+                <div class="form-group">
+                    <label>Resim Ekleyin</label>
+                    @if (Model.Resim == null)
+                    {
+                        <input value="" type="file" name="Resim" />
+
+                    }
+                    else
+                    {
+                        <input value="@Model.Resim" type="file" name="Resim" />
+                        
+                    }
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2"> Kaydet </button>
+            </form>
+            
+        </div>
+    </div>
+</div>

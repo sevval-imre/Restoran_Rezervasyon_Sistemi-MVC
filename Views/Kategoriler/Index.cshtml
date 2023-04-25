@@ -1,0 +1,66 @@
+﻿@using SevvalImre_Proje.Models
+@model List<Kategori>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Kategoriler</h2>
+
+<a href="/Kategoriler/KategoriEkle" class="btn btn-primary btn-fw"> Ekle </a>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Kategori ID</th>
+                    <th>Kategori Adı</th>
+                    <th>Sil</th>
+                    <th>Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.KategoriID</td>
+                        <td>@item.KategoriAd</td>
+                        <td><a href="#" class="btn btn-primary btn-sm kategoriSil" data-kategoriID="@item.KategoriID"> Sil </a></td> 
+                        <td><a href="/Kategoriler/KategoriGetir/@item.KategoriID" class="btn btn-outline-success btn-sm"> Güncelle </a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Content/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".kategoriSil").click(function () {
+
+            var sonuc = confirm("Seçilen kategori silinsin mi?");
+            if (sonuc) {
+                var kategoriID = $(this).attr("data-kategoriID");
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Kategoriler/KategoriSil/" + kategoriID,
+                        success: function () {
+
+                            alert("Kategori silinmiştir.");
+                            window.location.replace("/Kategoriler/Index");
+                        },
+                        error: function () {
+                            alert("Silme Sırasında Hata Oluştu!");
+                        }
+                    });
+            }
+            else {
+
+                alert("Silme İşlemi İptal Edildi");
+            }
+        });
+    </script>
+}
+
+

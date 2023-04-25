@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RestoranRezervasyonModelStoreContainer" CdmEntityContainer="RestoranRezervasyonEntities">
+    <EntitySetMapping Name="Ilceler">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Ilceler">
+        <MappingFragment StoreEntitySet="Ilceler">
+          <ScalarProperty Name="IlceID" ColumnName="IlceID" />
+          <ScalarProperty Name="IlceAd" ColumnName="IlceAd" />
+          <ScalarProperty Name="IlID" ColumnName="IlID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Iller">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Iller">
+        <MappingFragment StoreEntitySet="Iller">
+          <ScalarProperty Name="IlID" ColumnName="IlID" />
+          <ScalarProperty Name="IlAd" ColumnName="IlAd" />
+          <ScalarProperty Name="IlPlaka" ColumnName="IlPlaka" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kampanya">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Kampanya">
+        <MappingFragment StoreEntitySet="Kampanya">
+          <ScalarProperty Name="KampanyaID" ColumnName="KampanyaID" />
+          <ScalarProperty Name="KampanyaAd" ColumnName="KampanyaAd" />
+          <ScalarProperty Name="KampanyaTarihleri" ColumnName="KampanyaTarihleri" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategori">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Kategori">
+        <MappingFragment StoreEntitySet="Kategori">
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="KategoriAd" ColumnName="KategoriAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restoran">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Restoran">
+        <MappingFragment StoreEntitySet="Restoran">
+          <ScalarProperty Name="Resim" ColumnName="Resim" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="RestoranAd" ColumnName="RestoranAd" />
+          <ScalarProperty Name="TelefonNo" ColumnName="TelefonNo" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sube">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Sube">
+        <MappingFragment StoreEntitySet="Sube">
+          <ScalarProperty Name="SubeID" ColumnName="SubeID" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="IlID" ColumnName="IlID" />
+          <ScalarProperty Name="IlceID" ColumnName="IlceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kampanyali_Restoranlar">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Kampanyali_Restoranlar">
+        <MappingFragment StoreEntitySet="Kampanyali_Restoranlar">
+          <ScalarProperty Name="RestoranAd" ColumnName="RestoranAd" />
+          <ScalarProperty Name="KampanyaAd" ColumnName="KampanyaAd" />
+          <ScalarProperty Name="KampanyaTarihleri" ColumnName="KampanyaTarihleri" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategorilerine_Gore_Restoran_Listesi">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Kategorilerine_Gore_Restoran_Listesi">
+        <MappingFragment StoreEntitySet="Kategorilerine_Gore_Restoran_Listesi">
+          <ScalarProperty Name="RestoranAd" ColumnName="RestoranAd" />
+          <ScalarProperty Name="KategoriAd" ColumnName="KategoriAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sehirlere_Gore_Restoranlar">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Sehirlere_Gore_Restoranlar">
+        <MappingFragment StoreEntitySet="Sehirlere Gore Restoranlar">
+          <ScalarProperty Name="IlceAd" ColumnName="IlceAd" />
+          <ScalarProperty Name="IlAd" ColumnName="IlAd" />
+          <ScalarProperty Name="RestoranAd" ColumnName="RestoranAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Illerin_ilceleri">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Illerin_ilceleri">
+        <MappingFragment StoreEntitySet="Illerin ilceleri">
+          <ScalarProperty Name="IlceAd" ColumnName="IlceAd" />
+          <ScalarProperty Name="IlAd" ColumnName="IlAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kulllanici_Listele">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Kulllanici_Listele">
+        <MappingFragment StoreEntitySet="Kulllanici_Listele">
+          <ScalarProperty Name="RolAdi" ColumnName="RolAdi" />
+          <ScalarProperty Name="RolID" ColumnName="RolID" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Eposta" ColumnName="Eposta" />
+          <ScalarProperty Name="TelefonNo" ColumnName="TelefonNo" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Kulllanici_Rolleri" FunctionName="RestoranRezervasyonModel.Store.Kulllanici_Rolleri">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RestoranRezervasyonModel.Kulllanici_Rolleri_Result">
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="TelefonNo" ColumnName="TelefonNo" />
+          <ScalarProperty Name="Eposta" ColumnName="Eposta" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="RolID" ColumnName="RolID" />
+          <ScalarProperty Name="RolAdi" ColumnName="RolAdi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Masa">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Masa">
+        <MappingFragment StoreEntitySet="Masa">
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="SandelyeSayisi" ColumnName="SandelyeSayisi" />
+          <ScalarProperty Name="Konum" ColumnName="Konum" />
+          <ScalarProperty Name="MasaNo" ColumnName="MasaNo" />
+          <ScalarProperty Name="MasaID" ColumnName="MasaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kullanici">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Kullanici">
+        <MappingFragment StoreEntitySet="Kullanici">
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Eposta" ColumnName="Eposta" />
+          <ScalarProperty Name="TelefonNo" ColumnName="TelefonNo" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KullaniciRol">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.KullaniciRol">
+        <MappingFragment StoreEntitySet="KullaniciRol">
+          <ScalarProperty Name="RolAdi" ColumnName="RolAdi" />
+          <ScalarProperty Name="RolID" ColumnName="RolID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roller">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Roller">
+        <MappingFragment StoreEntitySet="Roller">
+          <ScalarProperty Name="RolID" ColumnName="RolID" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sikayet">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Sikayet">
+        <MappingFragment StoreEntitySet="Sikayet">
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="MusteriSoyad" ColumnName="MusteriSoyad" />
+          <ScalarProperty Name="MusteriAd" ColumnName="MusteriAd" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="SikayetNedeni" ColumnName="SikayetNedeni" />
+          <ScalarProperty Name="SikayetTarihi" ColumnName="SikayetTarihi" />
+          <ScalarProperty Name="SikayetID" ColumnName="SikayetID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rezervasyonlar">
+      <EntityTypeMapping TypeName="RestoranRezervasyonModel.Rezervasyonlar">
+        <MappingFragment StoreEntitySet="Rezervasyonlar">
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="MusteriSoyad" ColumnName="MusteriSoyad" />
+          <ScalarProperty Name="MusteriAd" ColumnName="MusteriAd" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="MasaID" ColumnName="MasaID" />
+          <ScalarProperty Name="RezervasyonTarihi" ColumnName="RezervasyonTarihi" />
+          <ScalarProperty Name="RezervasyonID" ColumnName="RezervasyonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

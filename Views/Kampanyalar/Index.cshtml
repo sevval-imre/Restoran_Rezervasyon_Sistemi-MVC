@@ -1,0 +1,65 @@
+﻿@using SevvalImre_Proje.Models
+@model List<Kampanya>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Kampanya Listesi</h2>
+
+<a href="/Kampanyalar/KampanyaEkle" class="btn btn-primary btn-fw"> Ekle </a>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Kampanya Adı</th>
+                    <th>Kampanya Tarihi</th>
+                    <th>Sil</th>
+                    <th>Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.KampanyaAd</td>
+                        <td>@item.KampanyaTarihleri</td>
+                        <td><a href="#" class="btn btn-primary btn-sm kampanyaSil" data-kampanyaID="@item.KampanyaID"> Sil </a></td>
+                        <td><a href="/Kampanyalar/KampanyaGuncelle/@item.KampanyaID" class="btn btn-outline-success btn-sm"> Güncelle </a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".kampanyaSil").click(function () {
+
+            var sonuc = confirm("Seçilen kampanya silinsin mi?");
+            if (sonuc) {
+                var kampanyaID = $(this).attr("data-kampanyaID");
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Kampanyalar/KampanyaSil/" + kampanyaID,
+                        success: function () {
+
+                            alert("Kayıt silinmiştir.");
+                            window.location.replace("/Kampanyalar/Index");
+                        },
+                        error: function () {
+                            alert("Silme Sırasında Hata Oluştu!");
+                        }
+                    });
+            }
+            else {
+
+                alert("Silme İşlemi İptal Edildi");
+            }
+        });
+    </script>
+}

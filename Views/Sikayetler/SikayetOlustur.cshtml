@@ -1,0 +1,90 @@
+﻿@using SevvalImre_Proje.Models;
+@model Sikayet
+
+@{
+    ViewBag.Title = "SikayetOlustur";
+}
+
+<h2>Şikayet OluŞturun</h2>
+
+<div class="page-header">
+    <h3 class="page-title">Şikayet Oluşturma Sayfası</h3>
+</div>
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title"></h4>
+            <form class="forms-sample" action="/Sikayetler/SikayetOlustur" method="post" role="form">
+                @if (Model != null)
+                {
+                    <input disabled type="text" name="RestoranID" value="@Model.SikayetID" />
+                }
+            <div class="form-group">
+                <label for="exampleInputMusteriAd1">Adınız</label>
+                @if (Model != null)
+                {
+                    <input value="@Session["Ad"]" type="text" class="form-control" id="exampleInputMusteriAd1"  name="MusteriAd" />
+                }
+                
+                
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputMusteriSoyad1">Soyadınız</label>
+                @if (Model != null)
+                {
+                    <input value="@Session["Soyad"]" type="text" class="form-control" id="exampleInputMusteriSoyad1"  name="MusteriSoyad" />
+                }
+               
+
+            </div>
+
+                <div class="form-group">
+                    <label for="exampleInputRestoranAd1">Şikayet Edeceğiniz Restoranı Seçiniz</label>
+                    @{
+                        var liste = ViewBag.restoran as List<Restoran>;
+                        <select class="form-control" name="RestoranID">
+                            @if (liste != null)
+                            {
+                                foreach (Restoran item in liste)
+                                {
+                                    <option value="@item.RestoranID">@item.RestoranAd</option>
+                                }
+                            }
+                        </select>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputSikayetTarihi1">Şikayet Tarihi Seçiniz</label>
+                    @if (Model.SikayetTarihi == null)
+                    {
+                        <input value="" type="date" class="form-control" id="exampleInputSikayetTarihid1" placeholder="Tarih" name="SikayetTarihi" />
+                    }
+                    else
+                    {
+                        <input value="@Model.SikayetTarihi" type="date" class="form-control" id="exampleInputSikayetTarihid1" placeholder="Tarih" name="SikayetTarihi" />
+                    }
+
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputSikayetNedeni1">Şikayet Nedeniniz</label>
+                    @if (Model.SikayetNedeni == null)
+                    {
+                        <input value="" type="text" class="form-control" id="exampleInputSikayetNedeni1" placeholder="Şikayet Nedeni" name="SikayetNedeni" />
+                    }
+                    else
+                    {
+                        <input value="@Model.SikayetNedeni" type="text" class="form-control" id="exampleInputSikayetNedeni1" placeholder="Şikayet Nedeni" name="SikayetNedeni" />
+                    }
+
+                </div>
+
+
+                <button type="submit" class="btn btn-primary mr-2"> Kaydet </button>
+            </form>
+        </div>
+    </div>
+</div>

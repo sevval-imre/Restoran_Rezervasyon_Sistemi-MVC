@@ -1,0 +1,69 @@
+﻿@using SevvalImre_Proje.Models
+@model List<Rezervasyonlar>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Rezervasyon Listesi</h2>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Rezervasyon Tarihi</th>
+                    <th>Restoran Adı</th>
+                    <th>Masa Numarası</th>
+                    <th>Müşteri Adı</th>
+                    <th>Müşteri Soyadı</th>
+                    <th>Sil</th>
+                    <th>Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.RezervasyonTarihi</td>
+                        <td>@item.Restoran.RestoranAd</td>
+                        <td>@item.Masa.MasaNo</td>
+                        <td>@item.MusteriAd</td>
+                        <td>@item.MusteriSoyad</td>
+                        <td><a href="#" class="btn btn-primary btn-sm rz" data-rzID="@item.RezervasyonID"> Sil </a></td>
+                        <td><a href="#" class="btn btn-outline-success btn-sm"> Güncelle </a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".rzSil").click(function () {
+
+            var sonuc = confirm("Rezervasyon Kaldırılsın mı?");
+            if (sonuc) {
+                var rzID = $(this).attr("data-rzID");
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Rezervasyonlar/RezervasyonSil/" + rzID,
+                        success: function () {
+
+                            alert("Rezervasyon kaldırılmıştır.");
+                            window.location.replace("/Rezervasyonlar/Index");
+                        },
+                        error: function () {
+                            alert("Silme Sırasında Hata Oluştu!");
+                        }
+                    });
+            }
+            else {
+
+                alert("Silme İşlemi İptal Edildi");
+            }
+        });
+    </script>
+}

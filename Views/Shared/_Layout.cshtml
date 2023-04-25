@@ -1,0 +1,249 @@
+﻿@using SevvalImre_Proje.Models
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@ViewBag.title</title>
+    <link rel="stylesheet" href="~/content/vendors/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="~/content/vendors/flag-icon-css/css/flag-icon.min.css" />
+    <link rel="stylesheet" href="~/content/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="~/content/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/content/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="~/content/css/style.css" />
+    <link rel="shortcut icon" href="~/content/images/favicon.png" />
+    @RenderSection("head", false)
+</head>
+<body>
+    <div class="container-scroller">
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
+                <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="index.html"></a>
+            </div>
+
+            <ul class="nav">
+                @if (User.IsInRole("Admin") || User.IsInRole("Müşteri"))
+                {
+
+                    <li class="nav-item nav-profile">
+                        <h3>HOŞGELDİNİZ</h3>
+                        <a href="#" class="nav-link">
+                            <div class="nav-profile-image">
+                                <img src="~/Content/images/depositphotos_146556543-stock-illustration-user-profile-symbol.jpg" alt="profile" />
+                                <span class="login-status online"></span>
+                            </div>
+                            <div class="nav-profile-text d-flex flex-column pr-3">
+                                <span class="font-weight-medium mb-2">@Session["Ad"] @Session["Soyad"]</span>
+                            </div>
+                        </a>
+                    </li>
+                }
+                @if (User.IsInRole("Admin") || User.IsInRole("Müşteri"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/AnaSayfa/Index">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">AnaSayfa</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Restoran/Index">
+                            <i class="mdi mdi-food menu-icon"></i>
+                            <span class="menu-title">Restoranlar</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Kullanicilar/Index">
+                            <i class="mdi mdi-account-multiple menu-icon"></i>
+                            <span class="menu-title">Kullanıcılar</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Rezervasyonlar/Index">
+                            <i class="mdi mdi-book menu-icon"></i>
+                            <span class="menu-title">Rezervasyonlar</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Müşteri"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                            <i class="mdi mdi-book menu-icon"></i>
+                            <span class="menu-title">Rezervasyonlar</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Rezervasyonlar/RezervasyonListesi">Rezervasyonlarım</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Rezervasyonlar/RezervasyonYap">Rezervasyon Yap</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Kategoriler/Index">
+                            <i class="mdi mdi-alphabetical menu-icon"></i>
+                            <span class="menu-title">Kategoriler</span>
+                        </a>
+                    </li>
+                }
+
+
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Kampanyalar/Index">
+                            <i class="mdi mdi-book-open-variant menu-icon"></i>
+                            <span class="menu-title">Kampanyalar</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Müşteri"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Kampanyalar/KampanyaliRestoranlar">
+                            <i class="mdi mdi-book-open-variant menu-icon"></i>
+                            <span class="menu-title">Kampanyalı Restoranlar</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Sikayetler/Index">
+                            <i class="mdi mdi-comment-alert-outline menu-icon"></i>
+                            <span class="menu-title">Şikayetler</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Müşteri"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Sikayetler/SikayetOlustur">
+                            <i class="mdi mdi-alert-box"></i>
+                            <span class="menu-title">Şikayet Et</span>
+                        </a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Müşteri"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Sikayetler/SikayetListele">
+                            <i class="mdi mdi-code-not-equal"></i>
+                            <span class="menu-title">Şikayet Listem</span>
+                        </a>
+                    </li>
+                }
+
+
+
+            </ul>
+        </nav>
+        <div class="container-fluid page-body-wrapper">
+            <div id="theme-settings" class="settings-panel">
+                <i class="settings-close mdi mdi-close"></i>
+                <p class="settings-heading">SIDEBAR SKINS</p>
+                <div class="sidebar-bg-options selected" id="sidebar-default-theme">
+                    <div class="img-ss rounded-circle bg-light border mr-3"></div> Default
+                </div>
+                <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                    <div class="img-ss rounded-circle bg-dark border mr-3"></div> Dark
+                </div>
+                <p class="settings-heading mt-2">HEADER SKINS</p>
+                <div class="color-tiles mx-0 px-4">
+                    <div class="tiles light"></div>
+                    <div class="tiles dark"></div>
+                </div>
+            </div>
+            <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+                <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
+                    <a class="navbar-brand brand-logo-mini align-self-center d-lg-none" href="index.html"><img src="~/content/images/logo-mini.svg" alt="logo" /></a>
+                    <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+
+                    <ul class="navbar-nav navbar-nav-right ml-lg-auto">
+                        <li class="nav-item nav-profile dropdown border-0">
+                            <button type="button" class="btn btn-dark dropdown-toggle" id="dprofileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-account"></i>
+                            </button>
+                            <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
+                                <a class="dropdown-item" href="/Login/LogOut">
+                                    <i class="mdi mdi-logout mr-2 text-primary"></i> Çıkış
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                </div>
+            </nav>
+            <div class="main-panel">
+                <div class="content-wrapper pb-0">
+                    @RenderBody()
+                </div>
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+                    </div>
+                </footer>
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    @RenderSection("body", false)
+    <script src="~/content/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="~/content/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/content/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="~/content/vendors/flot/jquery.flot.js"></script>
+    <script src="~/content/vendors/flot/jquery.flot.resize.js"></script>
+    <script src="~/content/vendors/flot/jquery.flot.categories.js"></script>
+    <script src="~/content/vendors/flot/jquery.flot.fillbetween.js"></script>
+    <script src="~/content/vendors/flot/jquery.flot.stack.js"></script>
+    <script src="~/content/vendors/flot/jquery.flot.pie.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="~/content/js/off-canvas.js"></script>
+    <script src="~/content/js/hoverable-collapse.js"></script>
+    <script src="~/content/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="~/content/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+    @RenderSection("scripts", false)
+</body>
+</html>

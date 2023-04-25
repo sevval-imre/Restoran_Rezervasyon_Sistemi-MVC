@@ -1,0 +1,37 @@
+﻿@using SevvalImre_Proje.Models
+@model List<Sikayet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Şikayetler Listesi</h2>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Şikayet Tarihi</th>
+                    <th>Müşteri Adı</th>
+                    <th>Müşteri Soyadı</th>
+                    <th>Restoran Adı</th>
+                    <th>Şikayet Nedeni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                 {
+                    <tr>
+                        <td>@item.SikayetTarihi</td>
+                        <td>@item.MusteriAd</td>
+                        <td>@item.MusteriSoyad</td>
+                        <td>@item.Restoran.RestoranAd</td>
+                        <td>@item.SikayetNedeni</td>
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</div>
+

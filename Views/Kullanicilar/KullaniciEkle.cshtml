@@ -1,0 +1,87 @@
+﻿@using SevvalImre_Proje.Models;
+@model Kullanici
+@{
+    ViewBag.Title = "KullaniciEkle";
+}
+
+<h2>Kullanıcı Ekle</h2>
+<div class="page-header">
+    <h3 class="page-title">Kullanici Ekleme Sayafası</h3>
+</div>
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Kullanıcı Bilgieri</h4>
+            <form class="forms-sample" action="/Kullanicilar/KullaniciEkle" method="post" role="form">
+                @if (Model != null)
+                {
+                    <input  type="hidden" name="KullaniciID" value="@Model.KullaniciID" />
+                }
+                <div class="form-group">
+                    <label for="exampleInputAd1">Ad</label>
+                    @if (Model.Ad == null)
+                    {
+                        <input value="" type="text" class="form-control" id="exampleInputKullaniciAd1" placeholder="Ad" name="Ad" />
+                    }
+                    else
+                    {
+                        <input value="@Model.Ad" type="text" class="form-control" id="exampleInputKullaniciAd1" placeholder="Ad" name="Ad" />
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputAd1">SoyAd</label>
+                    @if (Model.Soyad == null)
+                    {
+                        <input value="" type="text" class="form-control" id="exampleInputKullaniciSoyad1" placeholder="Soyad" name="Soyad" />
+                    }
+                    else
+                    {
+                        <input value="@Model.Soyad" type="text" class="form-control" id="exampleInputKullaniciSoyad1" placeholder="Soyad" name="Soyad" />
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputTelefonNo1">Telefon Numarası</label>
+                    @if (Model.TelefonNo == null)
+                    {
+                        <input value="" type="text" class="form-control" id="exampleInputTelefon1" placeholder="Telefon" name="TelefonNo" />
+                    }
+                    else
+                    {
+                        <input value="@Model.TelefonNo" type="text" class="form-control" id="exampleInputTelefon1" placeholder="Telefon" name="TelefonNo" />
+                    }
+                </div>
+                <div class="form-group">
+
+                    <label for="exampleInputAdres1">Mail Adresi</label>
+                    @if (Model.Eposta == null)
+                    {
+                        <input value="" type="text" class="form-control" id="exampleInputEposta1" placeholder="Mail Adresi" name="Eposta" />
+                    }
+                    else
+                    {
+                        <input value="@Model.Eposta" type="text" class="form-control" id="exampleInputEposta1" placeholder="Mail Adresi" name="Eposta" />
+                    }
+
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputsifre1">Şifre</label>
+                    @if (Model.Sifre == null)
+                    {
+                        <input value="" type="password" class="form-control" id="exampleInputSifre1" placeholder="Şifre" name="Sifre" />
+                    }
+                    else
+                    {
+                        <input value="@Model.Sifre" type="password" class="form-control" id="exampleInputSifre1" placeholder="Şifre" name="Sifre" />
+                    }
+                </div>
+                <button type="submit" class="btn btn-primary mr-2"> Kaydet </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+

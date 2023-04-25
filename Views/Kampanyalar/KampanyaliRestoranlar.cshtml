@@ -1,0 +1,25 @@
+﻿@using SevvalImre_Proje.Models
+@model List<Kampanya>
+
+@{
+    ViewBag.Title = "KampanyaliRestoranlar";
+}
+
+<h2>Kampanyalı Restoranlar</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card" style="width: 35rem;">
+                <img class="card-img-top" src="@item.Restoran.Resim" alt="Card image cap" style="width: 558px; height: 500px;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.KampanyaAd</h5>
+                    <p class="card-text">@item.Restoran.RestoranAd</p>
+                    <p class="card-text">Kampanya Tarihleri <br /> @item.KampanyaTarihleri</p>
+                    <a href="/Rezervasyonlar/RezervasyonYap" class="btn btn-primary">Rezervasyon Yap</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

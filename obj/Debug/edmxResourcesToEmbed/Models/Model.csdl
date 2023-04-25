@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestoranRezervasyonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ilceler">
+    <Key>
+      <PropertyRef Name="IlceID" />
+    </Key>
+    <Property Name="IlceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IlceAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IlID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Sube" Relationship="Self.FK_IlceSubeID" FromRole="Ilceler" ToRole="Sube" />
+    <NavigationProperty Name="Iller" Relationship="Self.FK_IlID" FromRole="Ilceler" ToRole="Iller" />
+  </EntityType>
+  <EntityType Name="Iller">
+    <Key>
+      <PropertyRef Name="IlID" />
+    </Key>
+    <Property Name="IlID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IlAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IlPlaka" Type="Int32" />
+    <NavigationProperty Name="Ilceler" Relationship="Self.FK_IlID" FromRole="Iller" ToRole="Ilceler" />
+    <NavigationProperty Name="Sube" Relationship="Self.FK_IlSubeID" FromRole="Iller" ToRole="Sube" />
+  </EntityType>
+  <EntityType Name="Kampanya">
+    <Key>
+      <PropertyRef Name="KampanyaID" />
+    </Key>
+    <Property Name="KampanyaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KampanyaAd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="KampanyaTarihleri" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="RestoranID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Restoran" Relationship="Self.FK_RestoranID" FromRole="Kampanya" ToRole="Restoran" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Restoran" Relationship="Self.FK_KategoriID" FromRole="Kategori" ToRole="Restoran" />
+  </EntityType>
+  <EntityType Name="Restoran">
+    <Key>
+      <PropertyRef Name="RestoranID" />
+    </Key>
+    <Property Name="RestoranID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RestoranAd" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TelefonNo" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adres" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KategoriID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Kampanya" Relationship="Self.FK_RestoranID" FromRole="Restoran" ToRole="Kampanya" />
+    <NavigationProperty Name="Kategori" Relationship="Self.FK_KategoriID" FromRole="Restoran" ToRole="Kategori" />
+    <NavigationProperty Name="Sube" Relationship="Self.FK_RestoranSubeID" FromRole="Restoran" ToRole="Sube" />
+    <Property Name="Resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Masa" Relationship="RestoranRezervasyonModel.FK_RestoranMasaID" FromRole="Restoran" ToRole="Masa" />
+    <NavigationProperty Name="Sikayet" Relationship="RestoranRezervasyonModel.FK_Sikayet_Restoran" FromRole="Restoran" ToRole="Sikayet" />
+    <NavigationProperty Name="Rezervasyonlar" Relationship="RestoranRezervasyonModel.FK_RezerveRestoran" FromRole="Restoran" ToRole="Rezervasyonlar" />
+  </EntityType>
+  <EntityType Name="Sube">
+    <Key>
+      <PropertyRef Name="SubeID" />
+    </Key>
+    <Property Name="SubeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RestoranID" Type="Int32" Nullable="false" />
+    <Property Name="IlID" Type="Int32" Nullable="false" />
+    <Property Name="IlceID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ilceler" Relationship="Self.FK_IlceSubeID" FromRole="Sube" ToRole="Ilceler" />
+    <NavigationProperty Name="Iller" Relationship="Self.FK_IlSubeID" FromRole="Sube" ToRole="Iller" />
+    <NavigationProperty Name="Restoran" Relationship="Self.FK_RestoranSubeID" FromRole="Sube" ToRole="Restoran" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Kampanyali_Restoranlar">
+    <Key>
+      <PropertyRef Name="RestoranAd" />
+      <PropertyRef Name="KampanyaTarihleri" />
+    </Key>
+    <Property Name="RestoranAd" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KampanyaAd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="KampanyaTarihleri" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Kategorilerine_Gore_Restoran_Listesi">
+    <Key>
+      <PropertyRef Name="RestoranAd" />
+      <PropertyRef Name="KategoriAd" />
+    </Key>
+    <Property Name="RestoranAd" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KategoriAd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_IlceSubeID">
+    <End Role="Ilceler" Type="Self.Ilceler" Multiplicity="1" />
+    <End Role="Sube" Type="Self.Sube" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ilceler">
+        <PropertyRef Name="IlceID" />
+      </Principal>
+      <Dependent Role="Sube">
+        <PropertyRef Name="IlceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IlID">
+    <End Role="Iller" Type="Self.Iller" Multiplicity="1" />
+    <End Role="Ilceler" Type="Self.Ilceler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Iller">
+        <PropertyRef Name="IlID" />
+      </Principal>
+      <Dependent Role="Ilceler">
+        <PropertyRef Name="IlID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IlSubeID">
+    <End Role="Iller" Type="Self.Iller" Multiplicity="1" />
+    <End Role="Sube" Type="Self.Sube" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Iller">
+        <PropertyRef Name="IlID" />
+      </Principal>
+      <Dependent Role="Sube">
+        <PropertyRef Name="IlID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RestoranID">
+    <End Role="Restoran" Type="Self.Restoran" Multiplicity="1" />
+    <End Role="Kampanya" Type="Self.Kampanya" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Kampanya">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KategoriID">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="Restoran" Type="Self.Restoran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="Restoran">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RestoranSubeID">
+    <End Role="Restoran" Type="Self.Restoran" Multiplicity="1" />
+    <End Role="Sube" Type="Self.Sube" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Sube">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RestoranRezervasyonEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ilceler" EntityType="Self.Ilceler" />
+    <EntitySet Name="Iller" EntityType="Self.Iller" />
+    <EntitySet Name="Kampanya" EntityType="Self.Kampanya" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+    <EntitySet Name="Restoran" EntityType="Self.Restoran" />
+    <EntitySet Name="Sube" EntityType="Self.Sube" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Kampanyali_Restoranlar" EntityType="Self.Kampanyali_Restoranlar" />
+    <EntitySet Name="Kategorilerine_Gore_Restoran_Listesi" EntityType="Self.Kategorilerine_Gore_Restoran_Listesi" />
+    <AssociationSet Name="FK_IlceSubeID" Association="Self.FK_IlceSubeID">
+      <End Role="Ilceler" EntitySet="Ilceler" />
+      <End Role="Sube" EntitySet="Sube" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IlID" Association="Self.FK_IlID">
+      <End Role="Iller" EntitySet="Iller" />
+      <End Role="Ilceler" EntitySet="Ilceler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IlSubeID" Association="Self.FK_IlSubeID">
+      <End Role="Iller" EntitySet="Iller" />
+      <End Role="Sube" EntitySet="Sube" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RestoranID" Association="Self.FK_RestoranID">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Kampanya" EntitySet="Kampanya" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KategoriID" Association="Self.FK_KategoriID">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Restoran" EntitySet="Restoran" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RestoranSubeID" Association="Self.FK_RestoranSubeID">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Sube" EntitySet="Sube" />
+    </AssociationSet>
+    <EntitySet Name="Sehirlere_Gore_Restoranlar" EntityType="RestoranRezervasyonModel.Sehirlere_Gore_Restoranlar" />
+    <EntitySet Name="Illerin_ilceleri" EntityType="RestoranRezervasyonModel.Illerin_ilceleri" />
+    <FunctionImport Name="Kullanicilar_Tipleri" ReturnType="Collection(RestoranRezervasyonModel.Kullanicilar_Tipleri_Result)" />
+    <EntitySet Name="Kulllanici_Listele" EntityType="RestoranRezervasyonModel.Kulllanici_Listele" />
+    <FunctionImport Name="Kulllanici_Rolleri" ReturnType="Collection(RestoranRezervasyonModel.Kulllanici_Rolleri_Result)" />
+    <FunctionImport Name="MasaKonumu" ReturnType="Collection(String)" />
+    <FunctionImport Name="MasaNumarası" ReturnType="Collection(Int32)" />
+    <EntitySet Name="Masa" EntityType="RestoranRezervasyonModel.Masa" />
+    <AssociationSet Name="FK_RestoranMasaID" Association="RestoranRezervasyonModel.FK_RestoranMasaID">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Masa" EntitySet="Masa" />
+    </AssociationSet>
+    <EntitySet Name="Kullanici" EntityType="RestoranRezervasyonModel.Kullanici" />
+    <EntitySet Name="KullaniciRol" EntityType="RestoranRezervasyonModel.KullaniciRol" />
+    <EntitySet Name="Roller" EntityType="RestoranRezervasyonModel.Roller" />
+    <AssociationSet Name="FK_Roller_Kullanici" Association="RestoranRezervasyonModel.FK_Roller_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Roller" EntitySet="Roller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roller_KullaniciRol" Association="RestoranRezervasyonModel.FK_Roller_KullaniciRol">
+      <End Role="KullaniciRol" EntitySet="KullaniciRol" />
+      <End Role="Roller" EntitySet="Roller" />
+    </AssociationSet>
+    <EntitySet Name="Sikayet" EntityType="RestoranRezervasyonModel.Sikayet" />
+    <AssociationSet Name="FK_KullaniciSikayet" Association="RestoranRezervasyonModel.FK_KullaniciSikayet">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Sikayet" EntitySet="Sikayet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sikayet_Restoran" Association="RestoranRezervasyonModel.FK_Sikayet_Restoran">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Sikayet" EntitySet="Sikayet" />
+    </AssociationSet>
+    <EntitySet Name="Rezervasyonlar" EntityType="RestoranRezervasyonModel.Rezervasyonlar" />
+    <AssociationSet Name="FK_Rezervasyonlar_Kullanici" Association="RestoranRezervasyonModel.FK_Rezervasyonlar_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Rezervasyonlar" EntitySet="Rezervasyonlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RezerveMasa" Association="RestoranRezervasyonModel.FK_RezerveMasa">
+      <End Role="Masa" EntitySet="Masa" />
+      <End Role="Rezervasyonlar" EntitySet="Rezervasyonlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RezerveRestoran" Association="RestoranRezervasyonModel.FK_RezerveRestoran">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Rezervasyonlar" EntitySet="Rezervasyonlar" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Sehirlere_Gore_Restoranlar">
+    <Key>
+      <PropertyRef Name="RestoranAd" />
+      <PropertyRef Name="IlAd" />
+      <PropertyRef Name="IlceAd" />
+    </Key>
+    <Property Name="RestoranAd" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="IlAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IlceAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Illerin_ilceleri">
+    <Key>
+      <PropertyRef Name="IlAd" />
+      <PropertyRef Name="IlceAd" />
+    </Key>
+    <Property Name="IlAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IlceAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="Kullanicilar_Tipleri_Result">
+    <Property Type="String" Name="Ad" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Soyad" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Eposta" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Sifre" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="TelefonNo" Nullable="false" MaxLength="12" />
+    <Property Type="Int32" Name="KullaniciID" Nullable="false" />
+    <Property Type="Int32" Name="RestoranID" Nullable="false" />
+    <Property Type="String" Name="RolAdi" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <EntityType Name="Kulllanici_Listele">
+    <Key>
+      <PropertyRef Name="Ad" />
+      <PropertyRef Name="Soyad" />
+      <PropertyRef Name="TelefonNo" />
+      <PropertyRef Name="Eposta" />
+      <PropertyRef Name="Sifre" />
+      <PropertyRef Name="KullaniciID" />
+      <PropertyRef Name="RestoranID" />
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TelefonNo" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Eposta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Sifre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+    <Property Name="RestoranID" Type="Int32" Nullable="false" />
+    <Property Name="RolID" Type="Int32" Nullable="false" />
+    <Property Name="RolAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="Kulllanici_Rolleri_Result">
+    <Property Type="String" Name="Ad" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Soyad" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TelefonNo" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="Eposta" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Sifre" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="KullaniciID" Nullable="false" />
+    <Property Type="Int32" Name="RestoranID" Nullable="false" />
+    <Property Type="Int32" Name="RolID" Nullable="false" />
+    <Property Type="String" Name="RolAdi" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <EntityType Name="Masa">
+    <Key>
+      <PropertyRef Name="MasaID" />
+    </Key>
+    <Property Name="MasaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MasaNo" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Konum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SandelyeSayisi" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="RestoranID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Restoran" Relationship="RestoranRezervasyonModel.FK_RestoranMasaID" FromRole="Masa" ToRole="Restoran" />
+    <NavigationProperty Name="Rezervasyonlar" Relationship="RestoranRezervasyonModel.FK_RezerveMasa" FromRole="Masa" ToRole="Rezervasyonlar" />
+  </EntityType>
+  <Association Name="FK_RestoranMasaID">
+    <End Type="RestoranRezervasyonModel.Restoran" Role="Restoran" Multiplicity="1" />
+    <End Type="RestoranRezervasyonModel.Masa" Role="Masa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Masa">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="KullaniciID" />
+    </Key>
+    <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TelefonNo" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Eposta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Sifre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Roller" Relationship="RestoranRezervasyonModel.FK_Roller_Kullanici" FromRole="Kullanici" ToRole="Roller" />
+    <NavigationProperty Name="Sikayet" Relationship="RestoranRezervasyonModel.FK_KullaniciSikayet" FromRole="Kullanici" ToRole="Sikayet" />
+    <NavigationProperty Name="Rezervasyonlar" Relationship="RestoranRezervasyonModel.FK_Rezervasyonlar_Kullanici" FromRole="Kullanici" ToRole="Rezervasyonlar" />
+  </EntityType>
+  <EntityType Name="KullaniciRol">
+    <Key>
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RolAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Roller" Relationship="RestoranRezervasyonModel.FK_Roller_KullaniciRol" FromRole="KullaniciRol" ToRole="Roller" />
+  </EntityType>
+  <EntityType Name="Roller">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+    <Property Name="RolID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Kullanici" Relationship="RestoranRezervasyonModel.FK_Roller_Kullanici" FromRole="Roller" ToRole="Kullanici" />
+    <NavigationProperty Name="KullaniciRol" Relationship="RestoranRezervasyonModel.FK_Roller_KullaniciRol" FromRole="Roller" ToRole="KullaniciRol" />
+  </EntityType>
+  <Association Name="FK_Roller_Kullanici">
+    <End Type="RestoranRezervasyonModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+    <End Type="RestoranRezervasyonModel.Roller" Role="Roller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="Roller">
+        <PropertyRef Name="KullaniciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roller_KullaniciRol">
+    <End Type="RestoranRezervasyonModel.KullaniciRol" Role="KullaniciRol" Multiplicity="1" />
+    <End Type="RestoranRezervasyonModel.Roller" Role="Roller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KullaniciRol">
+        <PropertyRef Name="RolID" />
+      </Principal>
+      <Dependent Role="Roller">
+        <PropertyRef Name="RolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Sikayet">
+    <Key>
+      <PropertyRef Name="SikayetID" />
+    </Key>
+    <Property Name="SikayetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SikayetTarihi" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SikayetNedeni" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+    <Property Name="MusteriAd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MusteriSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RestoranID" Type="Int32" />
+    <NavigationProperty Name="Kullanici" Relationship="RestoranRezervasyonModel.FK_KullaniciSikayet" FromRole="Sikayet" ToRole="Kullanici" />
+    <NavigationProperty Name="Restoran" Relationship="RestoranRezervasyonModel.FK_Sikayet_Restoran" FromRole="Sikayet" ToRole="Restoran" />
+  </EntityType>
+  <Association Name="FK_KullaniciSikayet">
+    <End Type="RestoranRezervasyonModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+    <End Type="RestoranRezervasyonModel.Sikayet" Role="Sikayet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="Sikayet">
+        <PropertyRef Name="KullaniciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sikayet_Restoran">
+    <End Type="RestoranRezervasyonModel.Restoran" Role="Restoran" Multiplicity="0..1" />
+    <End Type="RestoranRezervasyonModel.Sikayet" Role="Sikayet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Sikayet">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Rezervasyonlar">
+    <Key>
+      <PropertyRef Name="RezervasyonID" />
+    </Key>
+    <Property Name="RezervasyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RezervasyonTarihi" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="MasaID" Type="Int32" Nullable="false" />
+    <Property Name="RestoranID" Type="Int32" Nullable="false" />
+    <Property Name="MusteriAd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MusteriSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="KullaniciID" Type="Int32" />
+    <NavigationProperty Name="Kullanici" Relationship="RestoranRezervasyonModel.FK_Rezervasyonlar_Kullanici" FromRole="Rezervasyonlar" ToRole="Kullanici" />
+    <NavigationProperty Name="Masa" Relationship="RestoranRezervasyonModel.FK_RezerveMasa" FromRole="Rezervasyonlar" ToRole="Masa" />
+    <NavigationProperty Name="Restoran" Relationship="RestoranRezervasyonModel.FK_RezerveRestoran" FromRole="Rezervasyonlar" ToRole="Restoran" />
+  </EntityType>
+  <Association Name="FK_Rezervasyonlar_Kullanici">
+    <End Type="RestoranRezervasyonModel.Kullanici" Role="Kullanici" Multiplicity="0..1" />
+    <End Type="RestoranRezervasyonModel.Rezervasyonlar" Role="Rezervasyonlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="Rezervasyonlar">
+        <PropertyRef Name="KullaniciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RezerveMasa">
+    <End Type="RestoranRezervasyonModel.Masa" Role="Masa" Multiplicity="1" />
+    <End Type="RestoranRezervasyonModel.Rezervasyonlar" Role="Rezervasyonlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Masa">
+        <PropertyRef Name="MasaID" />
+      </Principal>
+      <Dependent Role="Rezervasyonlar">
+        <PropertyRef Name="MasaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RezerveRestoran">
+    <End Type="RestoranRezervasyonModel.Restoran" Role="Restoran" Multiplicity="1" />
+    <End Type="RestoranRezervasyonModel.Rezervasyonlar" Role="Rezervasyonlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Rezervasyonlar">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

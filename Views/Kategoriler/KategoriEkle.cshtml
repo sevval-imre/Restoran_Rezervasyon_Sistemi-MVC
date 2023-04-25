@@ -1,0 +1,42 @@
+﻿@using SevvalImre_Proje.Models;
+@model Kategori
+
+@{
+    ViewBag.Title = "KategoriEkle";
+}
+
+<h2>Kategori Ekle</h2>
+
+<div class="page-header">
+    <h3 class="page-title">Kategori Ekleme Sayfası</h3>
+</div>
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title"></h4>
+            <form class="forms-sample" action="/Kategoriler/KategoriEkle" method="post" role="form">
+                @if (Model != null)
+                {
+                    <input disabled type="text" name="KategoriID" value="@Model.KategoriID" />
+                }
+               
+                <div class="form-group">
+                    <label for="exampleInputKategoriAd1">Kategori Adı</label>
+                    @if (Model.KategoriAd == null)
+                    {
+                        <input value="" type="text" class="form-control" id="exampleInputKategori1" placeholder="Kategori Adı" name="KategoriAd" />
+                    }
+                    else
+                    {
+                        <input value="@Model.KategoriAd" type="text" class="form-control" id="exampleInputKategoriAd1" placeholder="Kategori Adı" name="KategoriAd" />
+                    }
+                </div>
+                
+                <button type="submit" class="btn btn-primary mr-2"> Kaydet </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

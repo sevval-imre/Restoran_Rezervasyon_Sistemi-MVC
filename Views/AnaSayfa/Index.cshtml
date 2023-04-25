@@ -1,0 +1,27 @@
+﻿@using SevvalImre_Proje.Models
+@model List<Restoran>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Hoşgeldiniz</h2>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card" style="width:35rem;">
+                    <img class="card-img-top" src="@item.Resim" alt="Card image cap" style="width:558px; height:500px;">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.RestoranAd</h5>
+                        <h6>@item.Kategori.KategoriAd</h6>
+                        <a href="/Rezervasyonlar/RezervasyonYap" class="btn btn-primary">Rezervasyon Yap</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+

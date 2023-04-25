@@ -1,0 +1,194 @@
+﻿@using SevvalImre_Proje.Models;
+@model Rezervasyonlar
+
+@{
+    ViewBag.Title = "RezervasyonYap";
+}
+
+<h2>Rezervasyon Yap</h2>
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <form action="/Rezervasyonlar/RezervasyonYap" method="post" role="form" class="form-sample">
+                <p class="card-description">Bilgilerinizi Giriniz</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Adınız</label>
+                            <div class="col-sm-9">
+                                @if (Model != null)
+                                {
+                                    <input value="@Session["Ad"]" type="text" class="form-control" name="MusteriAd" />
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Soyadınız</label>
+                            <div class="col-sm-9">
+                                @if (Model != null)
+                                {
+                                    <input value="@Session["Soyad"]" type="text" class="form-control" name="MusteriSoyad" />
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Rezervasyon Tarihi Seçiniz</label>
+                            <div class="col-sm-9">
+                                @if (Model.RezervasyonTarihi == null)
+                                {
+                                    <input value="" class="form-control" type="date" placeholder="dd/mm/yyyy" name="RezervasyonTarihi" />
+                                }
+                                else
+                                {
+                                    <input value="@Model.RezervasyonTarihi" class="form-control" type="date" placeholder="dd/mm/yyyy" name="RezervasyonTarihi" />
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">İl</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var list2 = ViewBag.sehir as List<Iller>;
+                                    <select class="form-control" name="IlID">
+                                        @if (list2 != null)
+                                        {
+                                            foreach (Iller item in list2)
+                                            {
+                                                <option value="@item.IlID">@item.IlAd</option>
+                                            }
+                                        }
+                                    </select>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">İlçe</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var list3 = ViewBag.ilce as List<Ilceler>;
+                                    <select class="form-control" name="IlceID">
+                                        
+                                        @if (list3 != null)
+                                        {
+                                            
+
+                                            foreach (Ilceler item in list3)
+                                            {
+                                                <option value="@item.IlceID">@item.IlceAd</option>
+                                            }
+                                        }
+                                    </select>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+
+                            <label class="col-sm-3 col-form-label">Restoran Seçiniz</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var liste = ViewBag.restoran as List<Restoran>;
+                                    <select class="form-control" name="RestoranID">
+                                        @if (liste != null)
+                                        {
+                                            foreach (Restoran item in liste)
+                                            {
+                                                <option value="@item.RestoranID">@item.RestoranAd</option>
+                                            }
+                                        }
+                                    </select>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Masa Numarası Seçiniz</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var list = ViewBag.masa as List<Masa>;
+                                    <select class="form-control" name="MasaID">
+                                        @if (list != null)
+                                        {
+                                            foreach (Masa item in list)
+                                            {
+                                                <option value="@item.MasaID">@item.MasaNo</option>
+                                            }
+                                        }
+
+                                    </select>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Masa Konumu Seçiniz</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var listt = ViewBag.masa as List<Masa>;
+                                    <select class="form-control" name="MasaID">
+                                        @if (listt != null)
+                                        {
+                                            foreach (Masa item in listt)
+                                            {
+                                                <option value="@item.MasaID">@item.Konum</option>
+                                            }
+                                        }
+
+                                    </select>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-primary mr-2"> Kaydet </button>
+            </form>
+        </div>
+      </div>
+   </div>
+
+@*<script src="~/Content/required/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#IlID").change(function () {
+            var IlID = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/Rezervasyonlar/GetIlceList?IlID" + IlID,
+                contentType: "html",
+                success: function (response) {
+                    debugger
+                    $("#IlceID").empty();
+                    $("#IlceID").append(response);
+                }
+            })
+        })
+    })
+</script>*@
+

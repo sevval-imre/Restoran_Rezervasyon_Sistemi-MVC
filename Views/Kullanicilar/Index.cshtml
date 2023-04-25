@@ -1,0 +1,69 @@
+﻿@using SevvalImre_Proje.Models
+@model List<Kullanici>
+@{
+    ViewBag.Title = "Kullanıcılar";
+}
+
+<h2>Kullanıcılar Listesi</h2>
+
+<a href="/Kullanicilar/KullaniciEkle" class="btn btn-primary btn-fw"> Ekle </a>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Mail Adresi</th>
+                    <th>Şifre</th>
+                    <th>Sil</th>
+                    <th>Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Ad</td>
+                        <td>@item.Soyad</td>
+                        <td>@item.Eposta</td>
+                        <td>@item.Sifre</td>
+                        <td><a href="#" class="btn btn-primary btn-sm kullaniciSil" data-kullaniciID="@item.KullaniciID"> Sil </a></td>
+                        <td><a href="/Kullanicilar/KullaniciGuncelle/@item.KullaniciID" class="btn btn-outline-success btn-sm"> Güncelle </a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".kullaniciSil").click(function () {
+
+            var sonuc = confirm("Seçilen kullanıcı silinsin mi?");
+            if (sonuc) {
+                var kullaniciID = $(this).attr("data-kullaniciID");
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Kullanicilar/KullaniciSil/" + kullaniciID,
+                        success: function () {
+
+                            alert("Kullanıcı silinmiştir.");
+                            window.location.replace("/Kullanicilar/Index");
+                        },
+                        error: function () {
+                            alert("Silme Sırasında Hata Oluştu!");
+                        }
+                    });
+            }
+            else {
+
+                alert("Silme İşlemi İptal Edildi");
+            }
+        });
+    </script>
+}

@@ -1,0 +1,11 @@
+﻿@model SevvalImre_Proje.Models.CascadingClass
+
+<option value="">---</option>
+
+@if (ViewBag.ilce!=null)
+{
+    foreach (var item in ViewBag.ilce)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

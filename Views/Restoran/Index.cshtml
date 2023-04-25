@@ -1,0 +1,77 @@
+﻿@using SevvalImre_Proje.Models
+@model List<Restoran>
+
+@{
+    ViewBag.Title = "Restoran Sayfası";
+}
+
+<h2>Restoranlar</h2>
+
+<a href="/Restoran/RestoranEkle" class="btn btn-primary btn-fw"> Ekle </a>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Restoran Numarası</th>
+                    <th>Restoran Adı</th>
+                    <th>Telefon Numarası</th>
+                    <th>Adresi</th>
+                    <th>Kategorisi</th>
+                    <th>Resim</th>
+                    <th>Sil</th>
+                    <th>Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.RestoranID</td>
+                        <td>@item.RestoranAd</td>
+                        <td>@item.TelefonNo</td>
+                        <td>@item.Adres</td>
+                        <td>@item.Kategori.KategoriAd</td>
+                        <td><img src="@item.Resim" width="80" height="80"/></td>
+                        <td><a href="#" class="btn btn-info restoranSil" data-restoranID="@item.RestoranID"> Sil </a></td>
+                        <td><a href="/Restoran/RestoranGuncelle/@item.RestoranID" class="btn btn-outline-success btn-sm"> Güncelle </a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".restoranSil").click(function () {
+
+            var sonuc = confirm("Kayıt silinsin mi");
+
+            if (sonuc) {
+                var restoranID = $(this).attr("data-restoranID");
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Restoran/RestoranSil/" + restoranID,
+                        success: function () {
+
+                            alert("Kayıt silinmiştir.");
+                            window.location.replace("/Restoran/Index");
+                        },
+                        error: function () {
+                            alert("Silme Sırasında Hata Oluştu!");
+                        }
+                    });
+            }
+            else {
+
+                alert("Silme İşlemi İptal Edildi");
+            }
+        });
+    </script>
+}
+
